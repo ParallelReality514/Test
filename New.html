@@ -4,110 +4,110 @@
     <title>Інтерактивна презентація EduRob</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-         /* 1. Обнулення та відмова від Flexbox у body */
-         body { 
-             margin: 0; 
-             padding: 0; 
-             background-color: transparent; /* Без сірого фону */
-             text-align: center; /* Центрує контейнери */
-             box-sizing: border-box; 
-         }
+        /* 1. Обнулення та відмова від Flexbox у body */
+        body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: transparent; 
+            text-align: center; 
+            box-sizing: border-box; 
+        }
 
-         /* 2. Основний контейнер слайд-шоу */
-         #slideshow-container {
-             position: relative;
-             max-width: 1000px;
-             width: 100%; 
-             margin: 0 auto; /* Центрування */
-             
-             background: white;
-             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-             
-             /* Використовуємо адаптивну висоту */
-             height: 0;
-             padding-bottom: 56.25%; /* 16:9 */
-             
-             overflow: hidden; /* Важливо для стабільності */
-         }
+        /* 2. Основний контейнер слайд-шоу */
+        #slideshow-container {
+            position: relative;
+            max-width: 1000px;
+            width: 100%; 
+            margin: 0 auto; 
+            
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 */
+            
+            overflow: hidden; 
+        }
 
-         /* 3. Стилі для слайдів */
-         .my-slide {
-             display: none; 
-             width: 100%;
-             height: 100%;
-             position: absolute;
-             top: 0;
-             left: 0;
-         }
-         
-         .my-slide:first-child {
-             display: block; 
-         }
-         
-         .my-slide img {
-             width: 100%;
-             height: 100%;
-             object-fit: contain;
-             display: block;
-         }
+        /* 3. Стилі для слайдів */
+        .my-slide {
+            display: none; 
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .my-slide:first-child {
+            display: block; 
+        }
+        
+        .my-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
 
-         /* 4. Навігаційна панель (З фіксованою висотою) */
-         .navigation {
-             width: 100%; 
-             max-width: 1000px;
-             padding: 10px 5px; 
-             margin: 0 auto; /* Центрування */
-             
-             /* ДОДАНО: Фіксована висота для стабільності */
-             height: 45px; 
-             
-             display: flex;
-             justify-content: space-between;
-             align-items: center;
-             background-color: #333;
-             color: white;
-             border-radius: 0 0 5px 5px;
-             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-             
-             box-sizing: border-box;
-         }
-         
-         .nav-btn {
-             cursor: pointer;
-             padding: 8px 15px; 
-             background: transparent;
-             border: none;
-             font-size: 20px; 
-             color: white;
-         }
-         
-         .nav-btn:hover:not(:disabled) {
-             background-color: rgba(255, 255, 255, .2);
-         }
-         
-         .nav-btn:disabled {
-             color: #777;
-             cursor: not-allowed;
-         }
-         
-         #slide-number {
-             font-size: 14px; 
-             font-weight: bold;
-             text-align: center;
-             white-space: nowrap; 
-         }
-         
-         /* Медіа-запити для мобільного вигляду */
-         @media (max-width: 480px) {
-             .nav-btn {
-                 padding: 5px 10px;
-                 font-size: 18px;
-             }
-             #slide-number {
-                 font-size: 12px;
-                 white-space: normal;
-             }
-         }
+        /* 4. Навігаційна панель */
+        .navigation {
+            width: 100%; 
+            max-width: 1000px;
+            padding: 10px 5px; 
+            margin: 0 auto; 
+            
+            height: 45px; 
+            
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            border-radius: 0 0 5px 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+            box-sizing: border-box;
+            /* ЗМІНА: Встановлення шрифту без зарубок (системний стек) */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        .nav-btn {
+            cursor: pointer;
+            padding: 8px 15px; 
+            border: none;
+            font-size: 20px; 
+            color: white;
+            background: transparent;
+        }
+        
+        .nav-btn:hover:not(:disabled) {
+            background-color: rgba(255, 255, 255, .2);
+        }
+        
+        .nav-btn:disabled {
+            color: #777;
+            cursor: not-allowed;
+        }
+        
+        #slide-number {
+            font-size: 18px; /* ЗМІНА: Трохи збільшено для кращої відповідності */
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap; 
+        }
+        
+        /* Медіа-запити для мобільного вигляду */
+        @media (max-width: 480px) {
+            .nav-btn {
+                padding: 5px 10px;
+                font-size: 18px;
+            }
+            #slide-number {
+                font-size: 16px; /* Збільшено розмір шрифту для мобільного */
+                white-space: normal;
+            }
+        }
     </style>
 </head>
 <body>
@@ -133,7 +133,7 @@
     </div>
     
     <script>
-        // Ваш JavaScript код (без змін)
+        // Ваш JavaScript код
         document.addEventListener('DOMContentLoaded', function() {
             let slideIndex = 1;
             const container = document.getElementById('slideshow-container');
