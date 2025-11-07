@@ -4,7 +4,7 @@
     <title>Інтерактивна презентація EduRob</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-         /* Обнулення базових стилів та налаштування контейнера сторінки */
+         /* 1. Обнулення та видалення сірої рамки */
          body { 
              margin: 0; 
              padding: 0; 
@@ -13,15 +13,14 @@
              align-items: center; 
              min-height: 100vh;
              box-sizing: border-box; 
-             background-color: #f0f0f0; /* Легкий фон для видимості */
+             background-color: transparent; /* ВИДАЛЕНО СІРИЙ ФОН */
          }
 
-         /* Основний контейнер слайд-шоу */
+         /* 2. Основний контейнер слайд-шоу */
          #slideshow-container {
              position: relative;
              max-width: 1000px;
-             width: 95%; 
-             margin-top: 15px; /* Невеликий відступ зверху */
+             width: 100%; /* Займаємо всю доступну ширину IFRAME */
              
              background: white;
              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -33,11 +32,12 @@
              display: flex;
              justify-content: center;
              align-items: center;
+             margin-top: 0; 
          }
 
-         /* Стилі для окремого слайду */
+         /* 3. Стилі для слайдів та навігації */
          .my-slide {
-             display: none; /* За замовчуванням приховано, JS покаже перший */
+             display: none; 
              width: 100%;
              height: 100%;
              position: absolute;
@@ -45,7 +45,6 @@
              left: 0;
          }
          
-         /* Явно робимо перший слайд видимим, поки не завантажиться JS */
          .my-slide:first-child {
              display: block; 
          }
@@ -59,9 +58,9 @@
 
          /* Навігаційна панель */
          .navigation {
-             width: 95%; 
+             width: 100%; /* Займаємо всю доступну ширину IFRAME */
              max-width: 1000px;
-             padding: 10px 0;
+             padding: 10px 5px; /* Зменшений горизонтальний відступ для мобільних */
              display: flex;
              justify-content: space-between;
              align-items: center;
@@ -69,20 +68,19 @@
              color: white;
              border-radius: 0 0 5px 5px;
              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-             margin-bottom: 15px; /* Відступ знизу */
-             position: relative; /* Гарантує, що він залишиться у потоці документу */
+             margin-bottom: 0; 
+             position: relative;
          }
          
          .nav-btn {
              cursor: pointer;
-             padding: 10px 20px;
+             padding: 8px 15px; /* Зменшено для мобільних */
              background: transparent;
              border: none;
-             font-size: 24px;
+             font-size: 20px; /* Зменшено розмір шрифту */
              color: white;
          }
          
-         /* Стилі кнопок, які спрацьовують при ховері та вимкненні */
          .nav-btn:hover:not(:disabled) {
              background-color: rgba(255, 255, 255, .2);
          }
@@ -93,8 +91,21 @@
          }
          
          #slide-number {
-             font-size: 18px;
+             font-size: 14px; /* Зменшено розмір шрифту */
              font-weight: bold;
+             text-align: center;
+             white-space: nowrap; /* Запобігає перенесенню тексту */
+         }
+         
+         /* Медіа-запит для дуже маленьких екранів */
+         @media (max-width: 480px) {
+             .nav-btn {
+                 padding: 5px 10px;
+                 font-size: 18px;
+             }
+             #slide-number {
+                 font-size: 12px;
+             }
          }
     </style>
 </head>
@@ -121,7 +132,7 @@
     </div>
     
     <script>
-        // Ваш JavaScript код для інтерактивності (має бути тут)
+        // Ваш JavaScript код (без змін)
         document.addEventListener('DOMContentLoaded', function() {
             let slideIndex = 1;
             const container = document.getElementById('slideshow-container');
